@@ -5,8 +5,6 @@ import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class Game extends GameApplication {
 
@@ -24,7 +22,7 @@ public class Game extends GameApplication {
     protected void initGame() {
         player = FXGL.entityBuilder()
                 .at(800, 450)
-                .view(new Rectangle(50, 50, Color.RED))
+                .with(new AnimationComponent())
                 .buildAndAttach();
     }
 
