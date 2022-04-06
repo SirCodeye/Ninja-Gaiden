@@ -2,6 +2,8 @@ package io.huffman.ninjagaiden;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
+import com.almasb.fxgl.app.scene.SceneFactory;
+import com.almasb.fxgl.app.scene.StartupScene;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
@@ -14,8 +16,13 @@ public class NinjaGaidenApp extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings settings) {
+        settings.setAppIcon("logo.png");
         settings.setWidth(1600);
         settings.setHeight(900);
+        settings.setTitle("Ninja Gaiden");
+        settings.setMainMenuEnabled(true);
+        settings.setGameMenuEnabled(true);
+        settings.setManualResizeEnabled(false);
         settings.setTicksPerSecond(60);
     }
 
