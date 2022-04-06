@@ -1,5 +1,5 @@
 package io.huffman.ninjagaiden.entity;
 
 public enum EntityType {
-    GROUND, PLAYER
+    GROUND, PLAYER, ENEMY
 }

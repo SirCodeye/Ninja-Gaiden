@@ -26,8 +26,10 @@ public class NinjaGaidenApp extends GameApplication {
 //        FXGL.getGameWorld().
 
         player = FXGL.spawn("player", 50, 50);
+        enemy = FXGL.spawn("enemy", 200, 50);
 
         FXGL.set("player", player);
+        FXGL.set("enemy", enemy);
 
         Viewport viewport = FXGL.getGameScene().getViewport();
         viewport.setBounds(0, 0, 192 * 16, FXGL.getAppHeight());
@@ -37,6 +39,7 @@ public class NinjaGaidenApp extends GameApplication {
     }
 
     private Entity player;
+    private Entity enemy;
 
     @Override
     protected void initInput() {
