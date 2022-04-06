@@ -43,7 +43,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>io.huffman.ninjagaiden.Game</mainClass>
+							<mainClass>io.huffman.ninjagaiden.NinjaGaidenApp</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
