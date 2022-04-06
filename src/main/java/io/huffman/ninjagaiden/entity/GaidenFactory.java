@@ -44,4 +44,29 @@ public class GaidenFactory implements EntityFactory {
                 .with(new PlayerComponent())
                 .build();
     }
+    @Spawns("wall")
+    public Entity newWall(SpawnData data) {
+        return entityBuilder(data)
+                .type(EntityType.WALL)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .build();
+    }
+    @Spawns("sign")
+    public Entity newSign(SpawnData data) {
+        return entityBuilder(data)
+                .type(EntityType.SIGN)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .build();
+    }
+    @Spawns("platform")
+    public Entity newPlatform(SpawnData data) {
+        return entityBuilder(data)
+                .type(EntityType.PLATFORM)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .build();
+    }
+
 }
