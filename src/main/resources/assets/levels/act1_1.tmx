@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="192" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="94">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="192" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="95">
  <editorsettings>
   <export format="json"/>
  </editorsettings>
@@ -55,5 +55,6 @@
   <object id="90" type="wall" x="1562.25" y="96.25" width="4" height="46.75"/>
   <object id="91" type="ground" x="1504.09" y="95.5455" width="61.3636" height="1.45455"/>
   <object id="93" type="platform" x="1988.91" y="79.2727" width="26.7273" height="2"/>
+  <object id="94" type="door" x="3049.25" y="106.25" width="2" height="55"/>
  </objectgroup>
 </map>

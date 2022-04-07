@@ -68,5 +68,15 @@ public class GaidenFactory implements EntityFactory {
                 .with(new PhysicsComponent())
                 .build();
     }
+    @Spawns("door")
+    public Entity newDoor(SpawnData data) {
+        return entityBuilder(data)
+                .type(EntityType.DOOR)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .opacity(0)
+                .with(new CollidableComponent(true))
+                .build();
+    }
+
 
 }

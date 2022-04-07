@@ -2,13 +2,13 @@ package io.huffman.ninjagaiden;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
-import com.almasb.fxgl.app.scene.SceneFactory;
-import com.almasb.fxgl.app.scene.StartupScene;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.virtual.VirtualButton;
+import com.almasb.fxgl.physics.CollisionHandler;
+import io.huffman.ninjagaiden.entity.EntityType;
 import io.huffman.ninjagaiden.entity.GaidenFactory;
 import javafx.scene.input.KeyCode;
 
@@ -39,7 +39,8 @@ public class NinjaGaidenApp extends GameApplication {
         Viewport viewport = FXGL.getGameScene().getViewport();
         viewport.setBounds(0, 0, 192 * 16, FXGL.getAppHeight());
         viewport.bindToEntity(player, FXGL.getAppWidth() / 2.0, FXGL.getAppHeight() / 2.0);
-        viewport.setZoom(3);
+        viewport.setZoom(4);
+        viewport.setHeight(680);
         viewport.setLazy(true);
     }
 
@@ -79,21 +80,28 @@ public class NinjaGaidenApp extends GameApplication {
         }, KeyCode.W, VirtualButton.A);
     }
 
-    //@Override
-    //protected void initPhysics() {
-    //    FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.GROUND) {
-    //@Override
-    //        protected void onCollisionBegin(Entity a, Entity b) {
-
-    //        }
-    //    });
-    //}
 
 
     @Override
     protected void initPhysics() {
         FXGL.getPhysicsWorld().setGravity(0, 800);
+
+        FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.DOOR) {
+            @Override
+            protected void onCollisionBegin(Entity player, Entity door) {
+
+
+            }
+        });
     }
+
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
         launch(args);
