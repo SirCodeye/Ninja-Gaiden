@@ -12,7 +12,10 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import io.huffman.ninjagaiden.PlayerComponent;
+import io.huffman.ninjagaiden.entity.enemy.EnemyAiComponent;
+import io.huffman.ninjagaiden.entity.enemy.EnemyComponent;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
 
 import static com.almasb.fxgl.dsl.FXGLForKtKt.entityBuilder;
 
@@ -69,4 +72,39 @@ public class GaidenFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("door")
+    public Entity newDoor(SpawnData data) {
+        return entityBuilder(data)
+                .type(EntityType.DOOR)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .opacity(0)
+                .with(new CollidableComponent(true))
+                .build();
+    }
+    @Spawns("enemy")
+    public Entity newEnemy(SpawnData data) {
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.DYNAMIC);
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16, 38), BoundingShape.box(6, 8)));
+        physics.setFixtureDef(new FixtureDef().friction(0.0f));
+
+        return entityBuilder(data)
+                .type(EntityType.ENEMY)
+                .bbox(new HitBox(new Point2D(5,5), BoundingShape.circle(12)))
+                .bbox(new HitBox(new Point2D(10,25), BoundingShape.box(10, 17)))
+                .with(physics)
+                .with(new CollidableComponent(true))
+                .with(new EnemyComponent())
+                .with(new EnemyAiComponent())
+                .build();
+    }
+    @Spawns("sword")
+    public Entity newSword(SpawnData data) {
+        return entityBuilder(data)
+                .type(EntityType.SWORD)
+                .viewWithBBox(new Rectangle(45, 20))
+                .opacity(0)
+                .with(new CollidableComponent(true))
+                .build();
+    }
 }

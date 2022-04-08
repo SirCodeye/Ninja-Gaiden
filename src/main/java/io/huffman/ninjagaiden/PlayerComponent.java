@@ -1,10 +1,12 @@
 package io.huffman.ninjagaiden;
 
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
+import io.huffman.ninjagaiden.entity.EntityType;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 
@@ -14,15 +16,16 @@ public class PlayerComponent extends Component {
 
     private AnimatedTexture texture;
 
-    private AnimationChannel animIdle, animWalk;
+    private AnimationChannel animIdle, animWalk, animJump, animDuck;
 
-    private int jumps = 1;
+    private int jumps;
 
     public PlayerComponent() {
 
         animIdle = new AnimationChannel(FXGL.image("idle.png"), 3, 27, 35, Duration.seconds(0.4), 0, 2);
         animWalk = new AnimationChannel(FXGL.image("walk.png"), 5, 27, 35, Duration.seconds(0.2), 1, 3);
-
+        animJump = new AnimationChannel(FXGL.image("jump.png"), 3, 27, 35, Duration.seconds(0.4), 0, 2);
+        animDuck = new AnimationChannel(FXGL.image("duck.png"), 4, 27, 35, Duration.seconds(0.4), 0, 3);
         texture = new AnimatedTexture(animIdle);
         texture.loop();
     }
@@ -34,13 +37,14 @@ public class PlayerComponent extends Component {
 
         physics.onGroundProperty().addListener((obs, old, isOnGround) -> {
             if (isOnGround) {
-                jumps = 1;
+                jumps = 2;
             }
         });
     }
 
     @Override
     public void onUpdate(double tpf) {
+
         if (physics.isMovingX()) {
             if (texture.getAnimationChannel() != animWalk) {
                 texture.loopAnimationChannel(animWalk);
@@ -62,6 +66,10 @@ public class PlayerComponent extends Component {
         physics.setVelocityX(185);
     }
 
+    public void down() {
+        texture.loopAnimationChannel(animDuck);
+    }
+
     public void stop() {
         physics.setVelocityX(0);
     }
@@ -72,6 +80,19 @@ public class PlayerComponent extends Component {
 
         physics.setVelocityY(-300);
 
+        texture.loopAnimationChannel(animJump);
+
         jumps--;
+    }
+    public void attack() {
+        if (FXGL.getGameWorld().getSingleton(EntityType.PLAYER).getScaleX() == 1) {
+            Entity sword = FXGL.spawn("sword", FXGL.getGameWorld().getSingleton(EntityType.PLAYER).getX() + 20, FXGL.getGameWorld().getSingleton(EntityType.PLAYER).getY());
+            FXGL.set("sword", sword);
+            FXGL.despawnWithDelay(sword, Duration.millis(100));
+        } else if (FXGL.getGameWorld().getSingleton(EntityType.PLAYER).getScaleX() == -1) {
+            Entity sword = FXGL.spawn("sword", FXGL.getGameWorld().getSingleton(EntityType.PLAYER).getX() - 32, FXGL.getGameWorld().getSingleton(EntityType.PLAYER).getY());
+            FXGL.set("sword", sword);
+            FXGL.despawnWithDelay(sword, Duration.millis(100));
+        }
     }
 }
