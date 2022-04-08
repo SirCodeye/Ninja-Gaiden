@@ -3,6 +3,7 @@ package io.huffman.ninjagaiden;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.UserAction;
@@ -14,6 +15,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.getGameTimer;
 
 public class NinjaGaidenApp extends GameApplication {
 
@@ -36,18 +39,19 @@ public class NinjaGaidenApp extends GameApplication {
         FXGL.getGameWorld().addEntityFactory(new GaidenFactory());
         FXGL.setLevelFromMap("act1-1.tmx");
 //        FXGL.getGameWorld().
+        Music backgroundMusic = FXGL.getAssetLoader().loadMusic("test.wav");
+        FXGL.getAudioPlayer().loopMusic(backgroundMusic);
 
-        player = FXGL.spawn("player", 50, 50);
-        enemy = FXGL.spawn("enemy", 100, 50);
+        player = FXGL.getGameWorld().getSingleton(EntityType.PLAYER);
 
         FXGL.set("player", player);
-        FXGL.set("enemy", enemy);
         FXGL.play("test.wav");
 
         Viewport viewport = FXGL.getGameScene().getViewport();
         viewport.setBounds(0, 0, 192 * 16, FXGL.getAppHeight());
         viewport.bindToEntity(player, FXGL.getAppWidth() / 2.0, FXGL.getAppHeight() / 2.0);
-        viewport.setZoom(4);
+        viewport.setHeight(510);
+        viewport.setZoom(3);
 //        viewport.setHeight(680);
 //        viewport.setLazy(true);
 
@@ -59,8 +63,6 @@ public class NinjaGaidenApp extends GameApplication {
     }
 
     private Entity player;
-    private Entity enemy;
-
 
 
     @Override
@@ -106,7 +108,7 @@ public class NinjaGaidenApp extends GameApplication {
             protected void onActionBegin() {
                 player.getComponent(PlayerComponent.class).jump();
             }
-        }, KeyCode.SPACE, VirtualButton.A);
+        }, KeyCode.W, VirtualButton.A);
         FXGL.getInput().addAction(new UserAction("Attack") {
             @Override
             protected void onActionBegin() {
@@ -133,7 +135,12 @@ public class NinjaGaidenApp extends GameApplication {
 
         FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYER, EntityType.DOOR) {
             protected void onCollisionBegin(Entity player, Entity door) {
-                System.out.println("YEEET");
+
+                FXGL.showMessage("You're Winner!");
+                getGameTimer().runOnceAfter(() -> {
+                    FXGL.getGameController().gotoMainMenu();
+                    FXGL.getAudioPlayer().stopAllMusic();
+                }, Duration.seconds(0.1d));
             }
         });
 

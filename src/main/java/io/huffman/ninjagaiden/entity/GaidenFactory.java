@@ -102,7 +102,7 @@ public class GaidenFactory implements EntityFactory {
     public Entity newSword(SpawnData data) {
         return entityBuilder(data)
                 .type(EntityType.SWORD)
-                .viewWithBBox(new Rectangle(45, 20))
+                .viewWithBBox(new Rectangle(35, 20))
                 .opacity(0)
                 .with(new CollidableComponent(true))
                 .build();

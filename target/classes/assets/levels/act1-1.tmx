@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="192" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="96">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="192" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="143">
  <editorsettings>
   <export format="json"/>
  </editorsettings>
@@ -54,5 +54,41 @@
   <object id="93" type="platform" x="1988.91" y="80.0227" width="26.7273"/>
   <object id="94" type="door" x="3044.5" y="106.25" height="55"/>
   <object id="95" type="platform" x="676.5" y="111.75" width="26.5"/>
+  <object id="101" type="player" x="32" y="96"/>
+  <object id="102" type="enemy" x="224" y="80"/>
+  <object id="103" type="enemy" x="592" y="80"/>
+  <object id="104" type="enemy" x="880" y="80"/>
+  <object id="105" type="enemy" x="800" y="16"/>
+  <object id="106" type="enemy" x="1072" y="32"/>
+  <object id="107" type="enemy" x="1408" y="64"/>
+  <object id="108" type="enemy" x="1824" y="64"/>
+  <object id="109" type="enemy" x="2032" y="80"/>
+  <object id="110" type="enemy" x="2272" y="96"/>
+  <object id="111" type="enemy" x="2656" y="96"/>
+  <object id="112" type="enemy" x="2912" y="96"/>
+  <object id="113" type="enemy" x="2832.88" y="95.625"/>
+  <object id="114" type="enemy" x="2970.63" y="95.625"/>
+  <object id="118" type="enemy" x="2600.88" y="88.875"/>
+  <object id="119" type="enemy" x="2101" y="77.375"/>
+  <object id="120" type="enemy" x="2051.88" y="43.375"/>
+  <object id="122" type="enemy" x="1766.38" y="66.75"/>
+  <object id="123" type="enemy" x="1652.88" y="57.5"/>
+  <object id="124" type="enemy" x="1595.38" y="53.625"/>
+  <object id="127" type="enemy" x="1596.5" y="11.625"/>
+  <object id="128" type="enemy" x="1648" y="12.5"/>
+  <object id="129" type="enemy" x="1150.75" y="57.875"/>
+  <object id="130" type="enemy" x="1184.38" y="50.125"/>
+  <object id="131" type="enemy" x="1213" y="42.125"/>
+  <object id="132" type="enemy" x="1274.5" y="31.25"/>
+  <object id="133" type="enemy" x="1342.5" y="26.5"/>
+  <object id="134" type="enemy" x="921.625" y="39.75"/>
+  <object id="135" type="enemy" x="975.75" y="40.125"/>
+  <object id="136" type="enemy" x="281.375" y="78"/>
+  <object id="137" type="enemy" x="177.625" y="63.5"/>
+  <object id="138" type="enemy" x="2404.75" y="59.875"/>
+  <object id="139" type="enemy" x="2451" y="58.125"/>
+  <object id="140" type="enemy" x="2510.13" y="59.75"/>
+  <object id="141" type="enemy" x="2365.13" y="56.5"/>
+  <object id="142" type="enemy" x="2445.38" y="12.375"/>
  </objectgroup>
 </map>
